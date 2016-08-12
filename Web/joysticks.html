@@ -1,0 +1,222 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Joystick testing</title>
+        <meta charset="utf-8">
+        <meta name="description" content="BLE quadcopter controller">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="css/joystick.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+        <script src="js/func.js"></script>
+        <script src="js/nipple.js"></script>
+    </head>
+    <body>
+        <div id="top-bar">
+            <div id="top-bar-status">
+                <div id="connectionStatus-container">
+                    <div id="connectionStatus-img">
+                        <img src="img/bluetooth.png">
+                    </div>
+                    <div id="connectionStatus">
+                    </div>
+                </div>
+                <div id="battery-level-container">
+                    <div id="battery-level-inner-container">
+                        <div id="battery-level-output">
+                            <span id="battery-level-value">
+                                <!-- Battery level -->
+                            </span>
+                            <span id="battery-level-unit">
+                                <!-- Battery level unit -->
+                            </span>
+                        </div>
+                        <div id="battery-top-container">
+                            <div id="battery-top-content">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="joystick-container">
+            <div id="joystick-left" class="joystick-wrapper">
+            </div>
+            <div id="joystick-right" class="joystick-wrapper">
+            </div>
+        </div>
+        <div id="debug-container">
+            <div id="debug-containerLeft">
+                <p id="debug-throttleLeft">
+                    <b>Throttle</b>: 0
+                </p>
+                <p id="debug-yawLeft">
+                    <b>Yaw</b>: 0
+                </p>
+            </div>
+            <div id="debug-containerRight">
+                <p id="debug-pitchRight">
+                    <b>Pitch</b>: 0
+                </p>
+                <p id="debug-rollRight">
+                    <b>Roll</b>: 0
+                </p>
+            </div>
+            <div class="debug-box">
+                Yaw trim
+                <div class="debug-box-wrap">
+                    <div class="debug-yaw-trim-minus">
+                        -
+                    </div><div class="debug-yaw-trim-input">
+                        0
+                    </div><div class="debug-yaw-trim-plus">
+                        +
+                    </div>
+                </div>
+            </div>
+            <div class="debug-box">
+                <div id="altitude-wrap" class="debug-box-wrap">
+                        Altitude hold
+                    <div id="altitude-checkbox-container">
+                        <input type="checkbox" name="altitude-enable" id="altitude-checkbox">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="button-settings-pid">
+            Edit PID
+        </div>
+        <div id="button-settings" >
+            <img src="img/wrench.png">
+        </div>
+        <div id="settings-overlay">
+        </div>
+        <!-- Settings menu -->
+        <div id="settings-container" class="overlay-container">
+            <div id="settings-inner-container">
+                <h2 class="heading-menu">Settings</h2>
+                <div class="settings-row">
+                    <span class="settings-row-label">Maximum roll angle [degrees]</span>
+                    <input type="number" id="settings-maxRoll" class="settings-row-value" >
+                </div>
+                <div class="settings-row">
+                    <span class="settings-row-label">Maximum pitch angle [degrees]</span>
+                    <input type="number"  id="settings-maxPitch" class="settings-row-value" >
+                </div>
+
+                <div class="settings-row">
+                    <span class="settings-row-label">Maximum yaw [%]</span>
+                    <input type="number"  id="settings-yawScale" class="settings-row-value" min="0" max="255">
+                </div>
+                <div class="settings-row">
+                    <span class="settings-row-label">Size of band where yaw = 0 [%]</span>
+                    <input type="number"  id="settings-yawLimits" class="settings-row-value" min="0" max="100">
+                </div>
+                <div class="settings-row">
+                    <span class="settings-row-label">Controller mode</span>
+                    <span class="settings-radio-container">
+                        <span class="settings-radio-label">Attitude:</span>
+                        <img src="img/checked.png" id="controller-mode-attitude" class="controller-mode-radio" >
+                        <span class="settings-radio-label">Rate:</span>
+                        <img src="img/unchecked.png" id="controller-mode-rate"class="controller-mode-radio">
+                    </span>
+                </div>
+                <div class="settings-row">
+                    <span class="settings-row-label">Calibrate quadcopter</span>
+                    <div id="button-settings-calibrate" class="button-settings" >
+                        Calibrate
+                    </div>
+                </div>
+                <div id="button-settings-container">
+                    <div id="button-settings-save" class="button-settings">
+                        Save
+                    </div>
+                    <div id="button-settings-back" class="button-settings button-settings-back">
+                        Back
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END settings menu-->
+
+        <!-- PID settings menu -->
+        <div id="settings-container-pid" class="overlay-container">
+            <div id="settings-inner-container-pid">
+                <div class="button-row">
+                    <button type="button" id="button-send">Update</button>
+                    <button type="button" id="button-reset">Reset</button>
+                    <button type="button" id="button-stop" class="button-settings-back">Back</button>
+                </div>
+                <div class="pid-tuning-group">
+                    <fieldset class="pid-tuning-field">
+                        <legend>Roll - rate</legend>
+                        <label for="roll-slave-p" class="pid-tuning-label">P:</label>
+                        <input type="number" id="roll-slave-p" class="pid-tuning-input" min="0" max="255" disabled>
+                        <label for="roll-slave-i" class="pid-tuning-label">I:</label>
+                        <input type="number" id="roll-slave-i" class="pid-tuning-input" min="0" max="255" disabled>
+                        <label for="roll-slave-d" class="pid-tuning-label">D:</label>
+                        <input type="number" id="roll-slave-d" class="pid-tuning-input" min="0" max="255" disabled>
+                    </fieldset>
+                </div>
+                <div class="pid-tuning-group">
+                    <fieldset class="pid-tuning-field">
+                        <legend>Roll - attitude</legend>
+                        <label for="roll-master-p" class="pid-tuning-label">P:</label>
+                        <input type="number" id="roll-master-p" class="pid-tuning-input" min="0" max="255" disabled>
+                        <label for="roll-master-i" class="pid-tuning-label">I:</label>
+                        <input type="number" id="roll-master-i" class="pid-tuning-input" min="0" max="255" disabled>
+                        <label for="roll-master-d" class="pid-tuning-label">D:</label>
+                        <input type="number" id="roll-master-d" class="pid-tuning-input" min="0" max="255" disabled>
+                    </fieldset>
+                </div>
+                <div class="pid-tuning-group">
+                    <fieldset class="pid-tuning-field">
+                        <legend>Pitch - rate</legend>
+                        <label for="pitch-slave-p" class="pid-tuning-label">P:</label>
+                        <input type="number"  id="pitch-slave-p" class="pid-tuning-input" min="0" max="255" disabled>
+                        <label for="pitch-slave-i" class="pid-tuning-label">I:</label>
+                        <input type="number" id="pitch-slave-i" class="pid-tuning-input" min="0" max="255" disabled>
+                        <label for="pitch-slave-d" class="pid-tuning-label">D:</label>
+                        <input type="number"  id="pitch-slave-d" class="pid-tuning-input" min="0" max="255" disabled>
+                    </fieldset>
+                </div>
+                <div class="pid-tuning-group">
+                    <fieldset class="pid-tuning-field">
+                        <legend>Pitch - attitude</legend>
+                        <label for="pitch-master-p" class="pid-tuning-label">P:</label>
+                        <input type="number" id="pitch-master-p" class="pid-tuning-input" min="0" max="255" disabled>
+                        <label for="pitch-master-i" class="pid-tuning-label">I:</label>
+                        <input type="number" id="pitch-master-i" class="pid-tuning-input" min="0" max="255" disabled>
+                        <label for="pitch-master-d" class="pid-tuning-label">D:</label>
+                        <input type="number" id="pitch-master-d" class="pid-tuning-input" min="0" max="255" disabled>
+                    </fieldset>
+                </div>
+                <div class="pid-tuning-group">
+                    <fieldset class="pid-tuning-field">
+                        <legend>Yaw - rate</legend>
+                        <label for="yaw-slave-p" class="pid-tuning-label">P:</label>
+                        <input type="number" id="yaw-slave-p" class="pid-tuning-input" min="0" max="255" disabled>
+                        <label for="yaw-slave-i" class="pid-tuning-label">I:</label>
+                        <input type="number" id="yaw-slave-i" class="pid-tuning-input" min="0" max="255" disabled>
+                        <label for="yaw-slave-d" class="pid-tuning-label">D:</label>
+                        <input type="number" id="yaw-slave-d" class="pid-tuning-input" min="0" max="255" disabled>
+                    </fieldset>
+                </div>
+                <div class="pid-tuning-group">
+                    <fieldset class="pid-tuning-field">
+                        <legend>Yaw - attitude</legend>
+                        <label for="yaw-master-p" class="pid-tuning-label">P:</label>
+                        <input type="number" id="yaw-master-p" class="pid-tuning-input" min="0" max="255" disabled>
+                        <label for="yaw-master-i" class="pid-tuning-label">I:</label>
+                        <input type="number" id="yaw-master-i" class="pid-tuning-input" min="0" max="255" disabled>
+                        <label for="yaw-master-d" class="pid-tuning-label">D:</label>
+                        <input type="number" id="yaw-master-d" class="pid-tuning-input" min="0" max="255" disabled>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+        <!-- END PID settings menu -->
+
+        <script src="js/control.js"></script>
+    </body>
+</html>

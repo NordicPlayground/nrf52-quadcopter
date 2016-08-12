@@ -1,0 +1,97 @@
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Quadcopter</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="BLE quadcopter controller">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/normal.css">
+        <link rel="stylesheet" type="text/css" href="css/control.css">
+        <script src="js/func.js"></script>
+    </head>
+    <body>
+        <div id="orientation-message">
+            <div>Please rotate the device 90&#176;
+                <div id="rotate-img">
+                    <img src="img/rotate.png">
+               </div>
+            </div>
+        </div>
+
+        <div id="fullscreen">
+        </div>
+
+        <div id="main">
+            <h1>Quadcopter</h1>
+            <div id="main-message">
+    			<div id='button-connect' class="button-main-menu">
+                    Connect
+                </div>
+            </div>
+        </div>
+		<div id="footer">
+			<img src="img/nordic.png" id="nordiclogo" class="footer-logo"></img>
+		</div>
+
+		<script>
+            // Button actions
+            addListener('#button-connect', 'click', start);
+
+            // Show joysticks
+            function start() {
+                select('#main').innerHTML = "";
+                //select('#main').innerHTML = '<object type="text/html" data="joysticks.html" class="loaded-content" ></object>';
+
+                $("#main").load("joysticks.html");
+
+                toggleFullscreen();
+                connect();
+            }
+		</script>
+
+        <script>
+            // Enable fullscreen
+            function toggleFullscreen(elem) {
+              elem = elem || document.documentElement;
+              if (!document.fullscreenElement && !document.mozFullScreenElement &&
+                !document.webkitFullscreenElement && !document.msFullscreenElement) {
+                if (elem.requestFullscreen) {
+                  elem.requestFullscreen();
+                } else if (elem.msRequestFullscreen) {
+                  elem.msRequestFullscreen();
+                } else if (elem.mozRequestFullScreen) {
+                  elem.mozRequestFullScreen();
+                } else if (elem.webkitRequestFullscreen) {
+                  elem.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+                }
+				$('#fullscreen').show();
+                $('#fullscreen').html("<img src='img/fullscreen-exit.png'>");
+              } else {
+                if (document.exitFullscreen) {
+                  document.exitFullscreen();
+                } else if (document.msExitFullscreen) {
+                  document.msExitFullscreen();
+                } else if (document.mozCancelFullScreen) {
+                  document.mozCancelFullScreen();
+                } else if (document.webkitExitFullscreen) {
+                  document.webkitExitFullscreen();
+                }
+                $('#fullscreen').html("<img src='img/fullscreen-enter.png'>");
+              }
+            }
+
+            document.getElementById('fullscreen').addEventListener('click', function() {
+                toggleFullscreen();
+            });
+
+        </script>
+
+        <script src="js/ble.js"></script>
+        <script src="js/func.js"></script>
+        <script src="js/nipple.js"></script>
+        <script src="js/gamepad.js"></script>
+
+    </body>
+</html>

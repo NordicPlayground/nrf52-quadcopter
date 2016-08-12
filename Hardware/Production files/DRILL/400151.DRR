@@ -1,0 +1,22 @@
+----------------------------------------------------------------------------------------------------------------------------------
+NCDrill File Report For: 400151.PcbDoc   12.08.2016  10:21:13
+----------------------------------------------------------------------------------------------------------------------------------
+
+Layer Pair : Top Layer to Bottom Layer
+ASCII RoundHoles File : 400151-RoundHoles.TXT
+ASCII SlotHoles File : 400151-SlotHoles.TXT
+EIA File   : 400151.DRL
+
+Tool       Hole Size               Hole Tolerance               Hole Type       Hole Count   Plated         Tool Travel
+----------------------------------------------------------------------------------------------------------------------------------
+T1      12mil (0.305mm)                                           Round             226       PTH        19.51inch (495.43mm)
+T2      13mil (0.33mm)                                            Round             16        PTH        0.71inch (18.00mm)
+T3      20mil (0.5mm)                                             Slot              2         PTH        0.58inch (14.64mm)
+T4      24mil (0.599mm)                                           Round             8         PTH        0.55inch (13.97mm)
+T5      28mil (0.701mm)                                           Round             2         PTH        0.06inch (1.50mm)
+T6      35mil (0.899mm)                                           Round             23        PTH        3.32inch (84.42mm)
+T7      39mil (0.991mm)                                           Round             3         NPTH       0.28inch (7.21mm)
+----------------------------------------------------------------------------------------------------------------------------------
+Totals                                                                              280
+
+Total Processing Time (hh:mm:ss) : 00:00:01

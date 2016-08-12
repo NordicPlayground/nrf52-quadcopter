@@ -1,0 +1,382 @@
+/*  Joystick stylesheet  */
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:100,300,400,500,700|Lato:400,500,700,300,100|Alegreya+Sans);
+
+/*  Tags  */
+* {
+    box-sizing: border-box;
+}
+
+html {
+}
+
+body {
+    font-family: 'Open Sans';
+}
+
+p {
+    font-size: 12px;
+    line-height: 80%;
+    text-align: left;
+}
+
+/*  General  */
+p:last-child {
+    margin-bottom: 30px;
+}
+
+.heading-menu {
+    text-align: center;
+    background-color: rgba(5, 32, 51, 1);
+    color: white;
+    padding: 3px 0 5px 0;
+    width: 100%;
+    font-size: 22px;
+    border-radius: 2px 2px 0 0;
+}
+
+.shadow-1 {
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+}
+
+.shadow-0 {
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+}
+
+/*  Top bar  */
+#top-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    background-color: rgba(5, 32, 51, 1);
+}
+
+#top-bar-status {
+    position: relative;
+    width: 200px;
+    height: 40px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/*  Connection  */
+#connectionStatus-container {
+    display: inline-block;
+    float: left;
+    margin-top: 11px;
+	padding: 2px 5px;
+}
+
+#connectionStatus-img {
+    display: inline-block;
+    margin-top: -7px;
+}
+
+#connectionStatus-img > img {
+    height: 20px;
+}
+
+#connectionStatus {
+    display: inline-block;
+	background-color: rgb(195, 7, 12);
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+}
+
+/*  Joystick  */
+#joystick-container {
+    position: static;
+    top: 0;
+    display: inline-block;
+}
+
+#joystickLeft {
+    position: absolute;
+    height: 300px;
+    width: 300px;
+    top: 150px;
+}
+
+#joystickLeft {
+    position: absolute;
+}
+
+.back {
+    border: 1px solid #999;
+    background-color: #DDD;
+    opacity: 0.8;
+    overflow: hidden;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
+    background: radial-gradient(ellipse at center,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.25) 100%);
+}
+
+.back-limits {
+    height: 100%;
+    width: 40px;
+    margin: 0 auto;
+    background-color: #AAA;
+    border: 1px solid #777;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) inset;
+}
+
+.front {
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.7);
+}
+
+.collection_0 > .front {
+    top: 75px;
+}
+
+
+/*  Settings  */
+.overlay-container {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 300px;
+    margin: 0;
+    top: 15px;
+    z-index: 1000;
+    overflow: scroll;
+}
+
+#settings-inner-container {
+    position: relative;
+    margin: 0 auto;
+    padding-bottom: 20px;
+    width: 400px;
+    height:;
+    background-color: white;
+    z-index: 1001;
+    border-radius: 2px;
+    box-shadow: 0 10px 20px 5;
+}
+
+#settings-overlay {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+}
+
+#settings-inner-container-pid {
+    background: white;
+    margin: 0 auto;
+    padding: 20px;
+    width: 350px;
+    text-align: left;
+}
+
+.settings-row {
+    margin: 8px 20px;
+    font-size: 14px;
+    padding: 2px 10px 5px 10px;
+    text-align: left;
+}
+
+.settings-row:nth-child(even) {
+    background-color: #EEE;
+}
+
+.settings-row-label {
+    display: inline-block;
+    max-width: 250px;
+    font-weight: 500;
+}
+
+.settings-row-value {
+    margin: -1px 0 0 0;
+    width: 40px;
+    float: right;
+    padding-left: 5px;
+}
+
+#button-settings-container {
+    width: 250px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#button-settings, #button-settings-pid {
+    background-color: rgba(5, 32, 51, 1);
+    position: absolute;
+    top: 0;
+    right: 20px;
+    height: 40px;
+    width: 40px;
+    margin: 0 auto;
+    border-radius: 0 0 2px 2px;
+    padding: 4px;
+}
+
+#button-settings-pid {
+    right: 130px;
+    color: white;
+    width: 80px;
+    font-weight: 700;
+    text-align: center;
+    padding-top: 10px;
+}
+
+#button-settings > img {
+    margin-top: 4px;
+    height: 24px;
+}
+
+
+.button-settings {
+    display: inline-block;
+    margin: 0 10px;
+    margin-bottom: 0;
+    width: 60px;
+    padding: 1px 10px;
+    text-align: center;
+    border: 1px solid white;
+    background-color: rgba(5, 32, 51, 1);
+    color: white;
+    font-weight: 500;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+#button-settings-calibrate {
+    float: right;
+    margin: 0;
+    width: 85px;
+}
+
+.settings-radio-label {
+    font-weight: 700;
+    font-size: 12px;
+    margin-left: 15px;
+}
+
+.settings-radio-container {
+    float: right;
+}
+
+.settings-radio-container > img.controller-mode-radio {
+    vertical-align: middle;
+    height: 15px;
+}
+
+
+/*  Battery levels  */
+#battery-level-container {
+    display: none;
+    text-align: center;
+    margin-top: 7px;
+    color: white;
+    font-weight: 700;
+}
+
+#battery-level-inner-container {
+    width: 60px;
+    margin: 0 auto;
+}
+
+#battery-level-output {
+    display: inline-block;
+    float: left;
+    width: 50px;
+    border: 1px solid white;
+    height: 24px;
+}
+
+#battery-top-container {
+    vertical-align: middle;
+    display: inline-block;
+    float: left;
+    height: 100%;
+    height: 24px;
+}
+
+#battery-level-value {
+    margin-right: -3px;
+}
+
+#battery-level-unit {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+#battery-top-content {
+    margin-top: 6px;
+    height: 10px;
+    background-color: white;
+    width: 5px;
+}
+
+/*  Debugging  */
+#debug-container {
+    height: 100px;
+    padding-top: 0;
+    margin: 0 auto;
+    margin-top: 30px;
+    text-align: center;
+}
+
+#debug-containerLeft {
+    display: inline-block;
+    width: 100px;
+}
+
+
+#debug-containerRight {
+    display: inline-block;
+    width: 120px;
+    text-align: left;
+}
+
+.debug-box{
+    width: 200px;
+    margin: 10px auto;
+    text-align: center;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.debug-box-wrap {
+    width: 110px;
+    margin: 0 auto;
+}
+
+.debug-yaw-trim-minus,
+.debug-yaw-trim-input,
+.debug-yaw-trim-plus {
+    display: inline-block;
+    height: 25px;
+    margin: 0;
+    width: 25px;
+    float: top;
+    font-size: 17px;
+}
+
+.debug-yaw-trim-minus,
+.debug-yaw-trim-plus {
+    font-weight: 700;
+    background-color: rgba(5, 32, 51, 1);
+    color: white;
+}
+
+.debug-yaw-trim-input {
+    width: 40px;
+    text-align: center;
+    background-color: #EBEBEB;
+}
+
+#altitude-wrap {
+    margin-top: 20px;
+    padding: 5px 0px;
+    background-color: #EBEBEB;
+}
+
+#altitude-checkbox {
+    height: 30px;
+    width: 30px;
+}
